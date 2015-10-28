@@ -1,0 +1,29 @@
+<project name="sqm" default="run">
+	
+	<target name="clean" description="delete all generated files">
+		<delete dir="build"/>
+		<mkdir dir="build/class"/>
+	</target>
+	
+
+	<target name="compile" depends= "clean">
+		
+		<javac srcdir="src"
+		       destdir="build/class"
+		       includeantruntime = "false" />
+	</target>
+
+	<target name="jar" depends="compile">
+		<jar destfile="build/jar/sqm.jar"
+		     basedir="build/class">
+			<manifest>
+				<attribute name="Main-Class" value ="WebServerMain"/>
+			</manifest>
+	</jar>
+	</target>
+
+
+	<target name="run" depends="jar">
+		<java jar="build/jar/sqm.jar" fork="true"/>
+	</target>
+</project>
