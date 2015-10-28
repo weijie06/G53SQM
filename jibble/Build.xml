@@ -1,5 +1,9 @@
 <project name="sqm" default="run">
 	
+	<target name="info">
+	<echo>G53SQM ANT built.</echo>
+	</target>
+	
 	<target name="clean" description="delete all generated files">
 		<delete dir="build"/>
 		<mkdir dir="build/class"/>
@@ -14,16 +18,17 @@
 	</target>
 
 	<target name="jar" depends="compile">
-		<jar destfile="build/jar/sqm.jar"
+		<jar destfile="sqm.jar"
 		     basedir="build/class">
 			<manifest>
-				<attribute name="Main-Class" value ="WebServerMain"/>
+				<attribute name="Main-Class" value ="g53sqm.jibble/WebServerMain"/>
 			</manifest>
 	</jar>
 	</target>
 
 
 	<target name="run" depends="jar">
-		<java jar="build/jar/sqm.jar" fork="true"/>
+		<java jar="sqm.jar" fork="true"/>
+
 	</target>
 </project>
